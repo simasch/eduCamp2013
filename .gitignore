@@ -10,3 +10,6 @@
 /app/Bank/Bank-war/dist/
 /app/Bank/Bank-ejb/build/
 /app/Bank/Bank-ejb/dist/
+/app/Bank/Bank-model/build/
+/app/Bank/Bank-model/dist/
+/app/Bank/Bank-model/nbproject/private/

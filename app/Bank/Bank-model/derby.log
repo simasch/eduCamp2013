@@ -1,0 +1,10 @@
+----------------------------------------------------------------
+Tue Jun 11 12:22:37 WEST 2013:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.8.1.2 - (1095077): instance a816c00e-013f-32f9-2b4d-000005687728 
+on database directory C:\Users\Simon\Documents\GitHub\eduCamp2013\app\Bank-model\bank  with class loader sun.misc.Launcher$AppClassLoader@6d9bf996 
+Loaded from file:/C:/apps/glassfish-3.1.2.2/javadb/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.7.0_15-b03
+user.dir=C:\Users\Simon\Documents\GitHub\eduCamp2013\app\Bank-model
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
