@@ -4,7 +4,13 @@
     Author     : Simon
 --%>
 
+<%@page import="service.GreetingService"%>
+<%@page import="javax.ejb.EJB"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    @EJB
+    GreetingService greetingService;
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,6 +18,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1><% greetingService.sayHello(); %></h1>
     </body>
 </html>
