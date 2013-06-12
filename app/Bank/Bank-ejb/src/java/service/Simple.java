@@ -8,8 +8,6 @@ package service;
  *
  * @author Simon
  */
-public interface GreetingService {
-
-    String sayHello();
+public @interface Simple {
     
 }

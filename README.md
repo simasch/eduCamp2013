@@ -9,3 +9,4 @@ Java EE 6 Tutorial: http://docs.oracle.com/javaee/6/tutorial/doc/
 ### Slides und Dokumentation
 https://github.com/simasch/eduCamp2013/tree/master/doc
 
+JPA Workshops: https://code.google.com/p/jpaworkshop/

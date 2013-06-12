@@ -13,3 +13,5 @@
 /app/Bank/Bank-model/build/
 /app/Bank/Bank-model/dist/
 /app/Bank/Bank-model/nbproject/private/
+/app/DependencyInection/nbproject/private/
+/app/DependencyInection/build/
