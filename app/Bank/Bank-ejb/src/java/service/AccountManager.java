@@ -2,15 +2,17 @@ package service;
 
 import java.math.BigDecimal;
 import java.util.List;
-import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
+import javax.ejb.Stateful;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import model.Account;
 import model.Customer;
 
-@Stateless
+@Stateful
 @LocalBean
 public class AccountManager {
 
@@ -27,6 +29,8 @@ public class AccountManager {
     }
 
     public Account createAccount(Customer customer, String description) {
+        this.getAccounts(Long.MIN_VALUE);
+
         Account account = new Account();
         account.setDescription(description);
         account.setBalance(BigDecimal.TEN);
@@ -37,6 +41,7 @@ public class AccountManager {
         return account;
     }
 
+    @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
     public List<Account> getAccounts(Long customerId) {
         TypedQuery t = em.createNamedQuery(Customer.findAllAccounts, Account.class);
         t.setParameter("id", customerId);

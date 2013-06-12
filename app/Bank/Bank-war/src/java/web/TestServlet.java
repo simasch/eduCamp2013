@@ -20,10 +20,10 @@ public class TestServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Customer customer = accountManager.createCustomer("Peter Muster", "Im Web 2.0", "1234");
-        
+
         ServletOutputStream outputStream = response.getOutputStream();
         outputStream.println(customer.toString());
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

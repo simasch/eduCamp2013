@@ -45,14 +45,14 @@ public class TransactionManagerTest {
     @Test
     public void testWithDraw() throws Exception {
         createAccount();
-        Transaction transaction = transactionManager.withDraw(account, BigDecimal.TEN);
+        Transaction transaction = transactionManager.withdraw(account, BigDecimal.TEN);
         Assert.assertNotNull(transaction.getId());
     }
 
     @Test(expected = LimitExceedException.class)
     public void testWithDrawExceedLimit() throws Exception {
         createAccount();
-        Transaction transaction = transactionManager.withDraw(account, new BigDecimal("20"));
+        Transaction transaction = transactionManager.withdraw(account, new BigDecimal("20"));
         Assert.assertNotNull(transaction.getId());
     }
 

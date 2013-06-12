@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
 import javax.persistence.EntityManager;
+import javax.persistence.LockModeType;
 import javax.persistence.PersistenceContext;
 import model.Account;
 import model.Transaction;
@@ -15,7 +16,9 @@ public class TransactionManager {
     @PersistenceContext(unitName = "bank")
     EntityManager em;
 
-    public Transaction withDraw(Account account, BigDecimal amount) throws LimitExceedException {
+    public Transaction withdraw(Account account, BigDecimal amount) throws LimitExceedException {
+        account = em.find(Account.class, account.getId(), LockModeType.PESSIMISTIC_WRITE);
+        
         if (amount.compareTo(account.getBalance()) == 1) {
             throw new LimitExceedException();
         }
@@ -31,6 +34,8 @@ public class TransactionManager {
     }
 
     public Transaction deposit(Account account, BigDecimal amount) {
+        account = em.find(Account.class, account.getId(), LockModeType.PESSIMISTIC_WRITE);
+
         account.setBalance(account.getBalance().add(amount));
         account = em.merge(account);
 

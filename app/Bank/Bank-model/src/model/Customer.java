@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -28,6 +29,9 @@ public class Customer implements Serializable {
     @OneToMany
     @JoinColumn(name = "customer_id")
     private Set<Account> accounts = new HashSet<>();
+    
+    @Version
+    private Integer version;
 
     public String getName() {
         return name;

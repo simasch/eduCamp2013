@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Version;
 
 @Entity
 public class Account implements Serializable {
@@ -18,6 +19,8 @@ public class Account implements Serializable {
     private BigDecimal withdrawLimit;
     private BigDecimal balance;
     private String iban;
+    @Version
+    private Integer version;
 
     public Long getId() {
         return id;
