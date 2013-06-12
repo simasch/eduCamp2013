@@ -8,7 +8,6 @@ import javax.persistence.PersistenceContext;
 import model.Account;
 import model.Transaction;
 
-
 @Stateless
 @LocalBean
 public class TransactionManager {
@@ -16,10 +15,13 @@ public class TransactionManager {
     @PersistenceContext(unitName = "bank")
     EntityManager em;
 
-    public Transaction withDraw(Account account, BigDecimal amount) {
+    public Transaction withDraw(Account account, BigDecimal amount) throws LimitExceedException {
+        if (amount.compareTo(account.getBalance()) == 1) {
+            throw new LimitExceedException();
+        }
         account.setBalance(account.getBalance().subtract(amount));
         account = em.merge(account);
-        
+
         Transaction t = new Transaction();
         t.setAmount(amount);
         t.setCredit(account.getIban());

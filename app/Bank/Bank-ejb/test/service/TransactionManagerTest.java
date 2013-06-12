@@ -1,7 +1,6 @@
 package service;
 
 import java.math.BigDecimal;
-import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -47,6 +46,20 @@ public class TransactionManagerTest {
     public void testWithDraw() throws Exception {
         createAccount();
         Transaction transaction = transactionManager.withDraw(account, BigDecimal.TEN);
+        Assert.assertNotNull(transaction.getId());
+    }
+
+    @Test(expected = LimitExceedException.class)
+    public void testWithDrawExceedLimit() throws Exception {
+        createAccount();
+        Transaction transaction = transactionManager.withDraw(account, new BigDecimal("20"));
+        Assert.assertNotNull(transaction.getId());
+    }
+
+    @Test
+    public void testDeposit() throws Exception {
+        createAccount();
+        Transaction transaction = transactionManager.deposit(account, BigDecimal.TEN);
         Assert.assertNotNull(transaction.getId());
     }
 

@@ -17,7 +17,10 @@
     </persistence-unit>
     <persistence-unit name="bank" transaction-type="JTA">
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-        <jta-data-source>jdbc/bank2</jta-data-source>
+        <jta-data-source>jdbc/bank</jta-data-source>
+         <class>model.Customer</class>
+        <class>model.Account</class>
+        <class>model.Transaction</class>
         <properties>
             <property name="eclipselink.ddl-generation" value="create-tables"/>
             <property name="eclipselink.logging.level" value="FINEST"/>
