@@ -1,5 +1,6 @@
 package service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
@@ -28,8 +29,9 @@ public class AccountManager {
     public Account createAccount(Customer customer, String description) {
         Account account = new Account();
         account.setDescription(description);
+        account.setBalance(BigDecimal.TEN);
         em.persist(account);
-        
+
         customer = em.merge(customer);
         customer.getAccounts().add(account);
         return account;
