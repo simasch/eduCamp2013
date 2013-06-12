@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package service;
 
 import java.util.List;
@@ -13,10 +9,6 @@ import javax.persistence.TypedQuery;
 import model.Account;
 import model.Customer;
 
-/**
- *
- * @author Simon
- */
 @Stateless
 @LocalBean
 public class AccountManager {
@@ -24,11 +16,23 @@ public class AccountManager {
     @PersistenceContext(unitName = "bank")
     EntityManager em;
 
-    public Customer createCustomer(String name) {
-        Customer c = new Customer();
-        c.setName(name);
-        em.persist(c);
-        return c;
+    public Customer createCustomer(String name, String address, String pin) {
+        Customer customer = new Customer();
+        customer.setName(name);
+        customer.setAddress(address);
+        customer.setPin(pin);
+        em.persist(customer);
+        return customer;
+    }
+
+    public Account createAccount(Customer customer, String description) {
+        Account account = new Account();
+        account.setDescription(description);
+        em.persist(account);
+        
+        customer = em.merge(customer);
+        customer.getAccounts().add(account);
+        return account;
     }
 
     public List<Account> getAccounts(Long customerId) {

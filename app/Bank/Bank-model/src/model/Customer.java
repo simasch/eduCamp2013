@@ -13,18 +13,18 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @NamedQuery(name = Customer.findAllAccounts,
-        query = "select c.accounts from Customer c join c.accounts a "
-        + "where c.id = :id")
+        query = "select a from Customer c join c.accounts a where c.id = :id")
 public class Customer implements Serializable {
 
     public static final String findAllAccounts = "Customer.findAllAccounts";
-    
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue
     private Long id;
     @NotNull
     private String name;
+    private String address;
+    private String pin;
     @OneToMany
     @JoinColumn(name = "customer_id")
     private Set<Account> accounts = new HashSet<>();
@@ -51,5 +51,21 @@ public class Customer implements Serializable {
 
     public void setAccounts(Set<Account> accounts) {
         this.accounts = accounts;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPin() {
+        return pin;
+    }
+
+    public void setPin(String pin) {
+        this.pin = pin;
     }
 }
