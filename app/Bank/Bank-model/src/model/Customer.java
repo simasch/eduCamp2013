@@ -7,12 +7,18 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 @Entity
+@NamedQuery(name = Customer.findAllAccounts,
+        query = "select c.accounts from Customer c join c.accounts a "
+        + "where c.id = :id")
 public class Customer implements Serializable {
 
+    public static final String findAllAccounts = "Customer.findAllAccounts";
+    
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue
