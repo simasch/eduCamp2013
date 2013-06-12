@@ -31,6 +31,7 @@ public class TransactionManagerTest {
         accountManager = new AccountManager();
         accountManager.em = em;
     }
+    private Account account;
 
     @Before
     public void beginTransaction() {
@@ -44,13 +45,16 @@ public class TransactionManagerTest {
 
     @Test
     public void testWithDraw() throws Exception {
+        createAccount();
+        Transaction transaction = transactionManager.withDraw(account, BigDecimal.TEN);
+        Assert.assertNotNull(transaction.getId());
+    }
+
+    private void createAccount() {
         Customer customer = accountManager.createCustomer("Petra Müller", "Bahnhofstrasse 1, 3000 Bern", "5678");
         Assert.assertNotNull(customer.getId());
 
-        Account account = accountManager.createAccount(customer, "Privatkonto");
+        account = accountManager.createAccount(customer, "Privatkonto");
         Assert.assertNotNull(account.getId());
-
-        Transaction transaction = transactionManager.withDraw(account, BigDecimal.TEN);
-        Assert.assertNotNull(transaction.getId());
     }
 }
