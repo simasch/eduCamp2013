@@ -1,4 +1,4 @@
-package service;
+package business;
 
 import java.util.List;
 import javax.persistence.EntityManager;

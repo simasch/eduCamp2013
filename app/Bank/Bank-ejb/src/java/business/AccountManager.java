@@ -1,7 +1,9 @@
-package service;
+package business;
 
 import java.math.BigDecimal;
 import java.util.List;
+import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateful;
 import javax.ejb.TransactionAttribute;
@@ -19,6 +21,7 @@ public class AccountManager {
     @PersistenceContext(unitName = "bank")
     EntityManager em;
 
+    @RolesAllowed({"BANK_EMPLOYEE"})
     public Customer createCustomer(String name, String address, String pin) {
         Customer customer = new Customer();
         customer.setName(name);
@@ -28,6 +31,7 @@ public class AccountManager {
         return customer;
     }
 
+    @PermitAll
     public Account createAccount(Customer customer, String description) {
         this.getAccounts(Long.MIN_VALUE);
 

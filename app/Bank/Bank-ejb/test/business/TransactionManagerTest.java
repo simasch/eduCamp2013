@@ -1,4 +1,4 @@
-package service;
+package business;
 
 import java.math.BigDecimal;
 import javax.persistence.EntityManager;

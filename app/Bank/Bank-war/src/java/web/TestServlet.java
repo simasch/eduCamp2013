@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Customer;
-import service.AccountManager;
+import business.AccountManager;
 
 @WebServlet(name = "test", urlPatterns = {"/test"})
 public class TestServlet extends HttpServlet {
