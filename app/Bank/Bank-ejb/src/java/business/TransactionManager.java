@@ -1,6 +1,8 @@
 package business;
 
 import java.math.BigDecimal;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
 import javax.persistence.EntityManager;
@@ -17,8 +19,10 @@ public class TransactionManager {
     EntityManager em;
 
     public Transaction withdraw(Account account, BigDecimal amount) throws LimitExceedException {
-        account = em.find(Account.class, account.getId(), LockModeType.PESSIMISTIC_WRITE);
-        
+        // Pessimistic lock does not work with Derby embedded
+        //account = em.find(Account.class, id, LockModeType.PESSIMISTIC_WRITE);
+        account = em.find(Account.class, account.getId());
+
         if (amount.compareTo(account.getBalance()) == 1) {
             throw new LimitExceedException();
         }
