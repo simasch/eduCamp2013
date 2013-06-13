@@ -17,3 +17,10 @@
 /app/DependencyInection/build/
 /app/ApplicationClient1/nbproject/private/
 /app/WebApplication1/nbproject/private/
+/app/Bank-counter/nbproject/private/
+/app/Bank-counter/dist/
+/app/Bank-counter/build/
+/app/Bank/Bank-counter/build/
+/app/Bank/Bank-counter/dist/
+/app/Bank/Bank-counter/nbproject/private/
+/app/Bank/Bank-atm/nbproject/private/
