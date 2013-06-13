@@ -21,7 +21,7 @@ public class AccountManager {
     @PersistenceContext(unitName = "bank")
     EntityManager em;
 
-    @RolesAllowed({"BANK_EMPLOYEE"})
+    @RolesAllowed({"EMPLOYEE"})
     public Customer createCustomer(String name, String address, String pin) {
         Customer customer = new Customer();
         customer.setName(name);
