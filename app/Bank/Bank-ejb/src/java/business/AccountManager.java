@@ -21,7 +21,6 @@ public class AccountManager {
     @PersistenceContext(unitName = "bank")
     EntityManager em;
 
-    @RolesAllowed({"EMPLOYEE"})
     public Customer createCustomer(String name, String address, String pin) {
         Customer customer = new Customer();
         customer.setName(name);
@@ -31,7 +30,6 @@ public class AccountManager {
         return customer;
     }
 
-    @PermitAll
     public Account createAccount(Customer customer, String description) {
         this.getAccounts(Long.MIN_VALUE);
 
