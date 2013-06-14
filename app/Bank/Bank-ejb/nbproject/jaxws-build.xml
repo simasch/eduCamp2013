@@ -30,36 +30,4 @@
                 JAX-WS WSIMPORT SECTION
                 ===================
             -->
-    <target name="wsimport-init" depends="init">
-        <fail if="${wsimport.bad.version}" message="WsImport ant task defined in the classpath ${j2ee.platform.wsimport.classpath} has a serious bug. See http://wiki.netbeans.org/MetroIssue for details."/>
-        <mkdir dir="${build.generated.sources.dir}/jax-ws"/>
-        <mkdir dir="${classes.dir}"/>
-        <property name="j2ee.platform.wsimport.classpath" value="${libs.jaxws21.classpath}"/>
-        <taskdef name="wsimport" classname="com.sun.tools.ws.ant.WsImport">
-            <classpath path="${j2ee.platform.wsimport.classpath}"/>
-        </taskdef>
-    </target>
-    <target name="wsimport-service-NewWebServiceFromWSDL" depends="wsimport-init">
-        <mkdir dir="${build.generated.dir}/jax-wsCache/service/NewWebServiceFromWSDL"/>
-        <property name="service-wsdl-NewWebServiceFromWSDL" location="${meta.inf}/xml-resources/web-services/NewWebServiceFromWSDL/wsdl/hello.wsdl"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/service/NewWebServiceFromWSDL" destdir="${build.generated.dir}/jax-wsCache/service/NewWebServiceFromWSDL" wsdl="${service-wsdl-NewWebServiceFromWSDL}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" xnocompile="true" xendorsed="true">
-            <depends file="${wsdl-NewWebServiceFromWSDL}"/>
-            <produces dir="${build.generated.dir}/jax-wsCache/service/NewWebServiceFromWSDL"/>
-        </wsimport>
-        <copy todir="${build.generated.sources.dir}/jax-ws">
-            <fileset dir="${build.generated.dir}/jax-wsCache/service/NewWebServiceFromWSDL">
-                <include name="**/*.java"/>
-            </fileset>
-        </copy>
-        <property name="targetLocation-NewWebServiceFromWSDL" location="${meta.inf}/wsdl/NewWebServiceFromWSDL"/>
-        <property name="sourceLocation-NewWebServiceFromWSDL" location="${meta.inf}/xml-resources/web-services/NewWebServiceFromWSDL/wsdl/"/>
-        <copy todir="${targetLocation-NewWebServiceFromWSDL}">
-            <fileset dir="${sourceLocation-NewWebServiceFromWSDL}"/>
-        </copy>
-    </target>
-    <target name="wsimport-service-clean-NewWebServiceFromWSDL" depends="-init-project">
-        <delete dir="${build.generated.dir}/jax-wsCache/service/NewWebServiceFromWSDL"/>
-        <delete dir="${build.generated.sources.dir}/jax-ws/service"/>
-    </target>
-    <target name="wsimport-service-generate" depends="wsimport-init, wsimport-service-NewWebServiceFromWSDL"/>
 </project>

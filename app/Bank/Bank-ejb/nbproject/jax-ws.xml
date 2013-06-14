@@ -4,34 +4,6 @@
     <service name="AtmService">
       <implementation-class>service.AtmService</implementation-class>
     </service>
-    <service name="NewWebServiceFromWSDL">
-      <implementation-class>service.NewWebServiceFromWSDL</implementation-class>
-      <wsdl-url>file:/C:/Users/Simon/Downloads/hello.wsdl</wsdl-url>
-      <local-wsdl-file>hello.wsdl</local-wsdl-file>
-      <service-name>AtmService</service-name>
-      <port-name>AtmServicePort</port-name>
-      <package-name>service</package-name>
-      <catalog-file>catalog.xml</catalog-file>
-      <use-provider>false</use-provider>
-      <wsimport-options>
-        <wsimport-option>
-          <wsimport-option-name>extension</wsimport-option-name>
-          <wsimport-option-value>true</wsimport-option-value>
-        </wsimport-option>
-        <wsimport-option>
-          <wsimport-option-name>verbose</wsimport-option-name>
-          <wsimport-option-value>true</wsimport-option-value>
-        </wsimport-option>
-        <wsimport-option>
-          <wsimport-option-name>xnocompile</wsimport-option-name>
-          <wsimport-option-value>true</wsimport-option-value>
-        </wsimport-option>
-        <wsimport-option>
-          <wsimport-option-name>xendorsed</wsimport-option-name>
-          <wsimport-option-value>true</wsimport-option-value>
-        </wsimport-option>
-      </wsimport-options>
-    </service>
   </services>
   <clients/>
   <jsr109>true</jsr109>
