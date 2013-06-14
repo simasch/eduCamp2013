@@ -1,7 +1,8 @@
 package counter;
 
-import java.util.logging.Logger;
 import javax.ejb.EJB;
+import model.Account;
+import model.Customer;
 import service.BankServiceRemote;
 
 public class Main {
@@ -10,6 +11,7 @@ public class Main {
     private static BankServiceRemote bankService;
 
     public static void main(String[] args) {
-        Logger.getAnonymousLogger().info(bankService.sayHello());
+        Customer customer = bankService.createCustomer("Fritz Muster", "Fichtenweg 1, 3400 Burgdorf", "1234");
+        Account account = bankService.createAccount(customer, "Privatkonto");
     }
 }
