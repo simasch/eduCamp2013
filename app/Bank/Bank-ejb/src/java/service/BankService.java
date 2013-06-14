@@ -1,12 +1,14 @@
 package service;
 
 import business.AccountManager;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import model.Account;
 import model.Customer;
 
 @Stateless
+@RolesAllowed("COUNTER")
 public class BankService implements BankServiceRemote {
 
     @EJB
