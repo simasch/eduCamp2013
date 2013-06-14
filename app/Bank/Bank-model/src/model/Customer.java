@@ -12,6 +12,9 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 @Entity
 @NamedQueries({
@@ -19,12 +22,15 @@ import javax.validation.constraints.NotNull;
             query = "select a from Customer c join c.accounts a where c.username = :user"),
     @NamedQuery(name = Customer.getTransactionsByUser,
             query = "select t from Transaction t where t.debit in "
-            + "(select a.iban from Customer c join c.accounts a where c.username = :user)")
-})
+            + "(select a.iban from Customer c join c.accounts a where c.username = :user)"),
+    @NamedQuery(name = Customer.getAccountByIbanAndPin,
+            query = "select a from Customer c join c.accounts a where c.pin = :pin and a.iban = :iban")})
+@XmlRootElement
 public class Customer implements Serializable {
 
     public static final String getAccountsByUser = "Customer.findByUser";
     public static final String getTransactionsByUser = "Customer.getTransactionsByUser";
+    public static final String getAccountByIbanAndPin = "Customer.getAccountByIbanAndPin";
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue
@@ -56,6 +62,8 @@ public class Customer implements Serializable {
         this.id = id;
     }
 
+    @XmlTransient
+    @JsonIgnore
     public Set<Account> getAccounts() {
         return accounts;
     }

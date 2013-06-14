@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <h1>My Accounts</h1>
+        
+        <div id="accounts"></div>
+        
+        <script>
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "https://localhost:8181/bank/res/accounts", true);
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    var accounts = JSON.parse(xhr.response);
+                    var content = document.getElementById("accounts");
+                    content.innerText = accounts;
+                } else {
+                    alert("Error " + xhr.status);
+                }
+            };
+            xhr.send();
+        </script>
+    </body>
+</html>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://x1:8080/AtmService/AtmService?wsdl" uri="wsdl/x1_8080/AtmService/AtmService.wsdl"/>
+    <system systemId="http://x1:8080/AtmService/AtmService?xsd=1" uri="wsdl/x1_8080/AtmService/AtmService.xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/AtmService/AtmService?wsdl" uri="wsdl/localhost_8080/AtmService/AtmService.wsdl"/>
+    <system systemId="http://localhost:8080/AtmService/AtmService?xsd=1" uri="wsdl/localhost_8080/AtmService/AtmService.xsd_1.xsd"/>
+</catalog>

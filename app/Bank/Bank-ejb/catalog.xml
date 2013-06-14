@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="file:/C:/Users/Simon/Downloads/hello.wsdl" uri="src/conf/xml-resources/web-services/NewWebServiceFromWSDL/wsdl/hello.wsdl"/>
+    <system systemId="http://x1:8080/AtmService/AtmService?xsd=1" uri="src/conf/xml-resources/web-services/NewWebServiceFromWSDL/wsdl/x1_8080/AtmService/AtmService.xsd_1.xsd"/>
+</catalog>

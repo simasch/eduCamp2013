@@ -54,4 +54,13 @@ public class AccountManager {
         t.setParameter("user", sc.getCallerPrincipal().getName());
         return t.getResultList();
     }
+
+    @RolesAllowed({"ATM"})
+    public BigDecimal getBalance(String iban, String pin) {
+        TypedQuery t = em.createNamedQuery(Customer.getAccountByIbanAndPin, Account.class);
+        t.setParameter("iban", iban);
+        t.setParameter("pin", pin);
+        Account account = (Account) t.getSingleResult();
+        return account.getBalance();
+    }
 }
