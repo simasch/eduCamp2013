@@ -3,6 +3,7 @@ package business;
 import java.math.BigDecimal;
 import java.util.List;
 import javax.annotation.Resource;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.LocalBean;
 import javax.ejb.SessionContext;
 import javax.ejb.Stateful;
@@ -16,6 +17,7 @@ import model.Customer;
 
 @Stateful
 @LocalBean
+@RolesAllowed({"EMPLOYEE"})
 public class AccountManager {
 
     @PersistenceContext(unitName = "bank")
@@ -45,6 +47,7 @@ public class AccountManager {
         return account;
     }
 
+    @RolesAllowed({"EMPLOYEE", "EBANKING"})
     @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
     public List<Account> getAccounts() {
         TypedQuery t = em.createNamedQuery(Customer.getAccountsByUser, Account.class);

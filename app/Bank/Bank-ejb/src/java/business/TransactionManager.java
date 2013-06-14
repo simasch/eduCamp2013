@@ -3,6 +3,7 @@ package business;
 import java.math.BigDecimal;
 import java.util.List;
 import javax.annotation.Resource;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
 import javax.ejb.SessionContext;
@@ -15,6 +16,7 @@ import model.Transaction;
 
 @Stateless
 @LocalBean
+@RolesAllowed({"EMPLOYEE", "EBANKING", "ATM"})
 public class TransactionManager {
 
     @PersistenceContext(unitName = "bank")
