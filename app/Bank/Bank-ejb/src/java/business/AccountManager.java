@@ -2,8 +2,6 @@ package business;
 
 import java.math.BigDecimal;
 import java.util.List;
-import javax.annotation.security.PermitAll;
-import javax.annotation.security.RolesAllowed;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateful;
 import javax.ejb.TransactionAttribute;
@@ -31,8 +29,6 @@ public class AccountManager {
     }
 
     public Account createAccount(Customer customer, String description) {
-        this.getAccounts(Long.MIN_VALUE);
-
         Account account = new Account();
         account.setDescription(description);
         account.setBalance(BigDecimal.TEN);
@@ -44,9 +40,8 @@ public class AccountManager {
     }
 
     @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
-    public List<Account> getAccounts(Long customerId) {
-        TypedQuery t = em.createNamedQuery(Customer.findAllAccounts, Account.class);
-        t.setParameter("id", customerId);
+    public List<Account> getAccounts() {
+        TypedQuery t = em.createNamedQuery(Account.findAll, Account.class);
         return t.getResultList();
     }
 }

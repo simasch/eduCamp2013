@@ -22,15 +22,14 @@ public class EbankingBean implements Serializable {
     private String from;
     private String to;
     private BigDecimal amount;
-
     @Inject
     private AccountManager accountManager;
     @Inject
     private TransactionManager transactionManager;
-    
+
     @PostConstruct
     public void init() {
-        // TODO get the accounts
+        accounts = accountManager.getAccounts();
     }
 
     public String showTransactions(Account account) {
@@ -42,7 +41,7 @@ public class EbankingBean implements Serializable {
         // TODO transfer the money
         return "/ebanking/accounts.xhtml";
     }
-    
+
     public List<Account> getAccounts() {
         return accounts;
     }

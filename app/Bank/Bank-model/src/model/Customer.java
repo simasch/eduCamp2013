@@ -7,17 +7,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@NamedQuery(name = Customer.findAllAccounts,
-        query = "select a from Customer c join c.accounts a where c.id = :id")
 public class Customer implements Serializable {
 
-    public static final String findAllAccounts = "Customer.findAllAccounts";
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue
@@ -29,7 +25,6 @@ public class Customer implements Serializable {
     @OneToMany
     @JoinColumn(name = "customer_id")
     private Set<Account> accounts = new HashSet<>();
-    
     @Version
     private Integer version;
 

@@ -59,7 +59,7 @@ public class AccountManagerTest {
         Account account = accountManager.createAccount(customer, "Privatkonto");
         Assert.assertNotNull(account.getId());
         
-        List<Account> accounts = accountManager.getAccounts(customer.getId());
+        List<Account> accounts = accountManager.getAccounts();
         Assert.assertTrue(accounts.size() > 0);
     }
 }
