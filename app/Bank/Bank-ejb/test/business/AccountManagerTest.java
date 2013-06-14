@@ -1,9 +1,21 @@
 package business;
 
+import java.security.Identity;
+import java.security.Principal;
 import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+import javax.ejb.EJBHome;
+import javax.ejb.EJBLocalHome;
+import javax.ejb.EJBLocalObject;
+import javax.ejb.EJBObject;
+import javax.ejb.SessionContext;
+import javax.ejb.TimerService;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.transaction.UserTransaction;
+import javax.xml.rpc.handler.MessageContext;
 import model.Account;
 import model.Customer;
 import org.junit.After;
@@ -24,6 +36,7 @@ public class AccountManagerTest {
 
         accountManager = new AccountManager();
         accountManager.em = em;
+        accountManager.sc = SessionContextProvider.getSessionContext();
     }
 
     @Before
@@ -59,7 +72,7 @@ public class AccountManagerTest {
         Account account = accountManager.createAccount(customer, "Privatkonto");
         Assert.assertNotNull(account.getId());
 
-        List<Account> accounts = accountManager.getAccounts("petra");
+        List<Account> accounts = accountManager.getAccounts();
         Assert.assertTrue(accounts.size() > 0);
     }
 }

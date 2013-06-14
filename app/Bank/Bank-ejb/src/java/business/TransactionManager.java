@@ -2,8 +2,10 @@ package business;
 
 import java.math.BigDecimal;
 import java.util.List;
+import javax.annotation.Resource;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
+import javax.ejb.SessionContext;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -17,6 +19,8 @@ public class TransactionManager {
 
     @PersistenceContext(unitName = "bank")
     EntityManager em;
+    @Resource
+    SessionContext sc;
 
     public Transaction withdraw(Account account, BigDecimal amount) throws LimitExceedException {
         // Pessimistic lock does not work with Derby embedded
@@ -64,9 +68,9 @@ public class TransactionManager {
 
     }
 
-    public List<Transaction> getTransactions(String user) {
+    public List<Transaction> getTransactions() {
         TypedQuery t = em.createNamedQuery(Customer.getTransactionsByUser, Transaction.class);
-        t.setParameter("user", user);
+        t.setParameter("user", sc.getCallerPrincipal().getName());
         return t.getResultList();
     }
 }

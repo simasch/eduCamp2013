@@ -31,16 +31,14 @@ public class EbankingBean implements Serializable {
 
     @PostConstruct
     public void init() {
-        String user = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
-        accounts = accountManager.getAccounts(user);
+        accounts = accountManager.getAccounts();
         for (Account a : accounts) {
             ibans.add(a.getIban());
         }
     }
 
     public String showTransactions(Account account) {
-        String user = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
-        transactions = transactionManager.getTransactions(user);
+        transactions = transactionManager.getTransactions();
         from = account.getIban();
         return "/ebanking/transactions.xhtml";
     }

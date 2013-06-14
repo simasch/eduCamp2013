@@ -29,6 +29,7 @@ public class TransactionManagerTest {
 
         accountManager = new AccountManager();
         accountManager.em = em;
+        accountManager.sc = SessionContextProvider.getSessionContext();
     }
     private Account account;
 
