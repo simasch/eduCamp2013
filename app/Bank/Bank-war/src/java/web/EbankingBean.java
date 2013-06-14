@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import model.Account;
 import model.Transaction;
@@ -29,16 +30,19 @@ public class EbankingBean implements Serializable {
 
     @PostConstruct
     public void init() {
-        accounts = accountManager.getAccounts();
+        String user = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
+        accounts = accountManager.getAccounts(user);
     }
 
     public String showTransactions(Account account) {
-        // TODO get the transactions
+        String user = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
+        transactions = transactionManager.getTransactions(user);
+        from = account.getIban();
         return "/ebanking/transactions.xhtml";
     }
 
     public String send() {
-        // TODO transfer the money
+        transactionManager.transfer(from, from, amount);
         return "/ebanking/accounts.xhtml";
     }
 

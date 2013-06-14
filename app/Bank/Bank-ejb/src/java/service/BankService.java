@@ -13,8 +13,8 @@ public class BankService implements BankServiceRemote {
     private AccountManager accountManager;
 
     @Override
-    public Customer createCustomer(String name, String address, String pin) {
-        return accountManager.createCustomer(name, address, pin);
+    public Customer createCustomer(String name, String address, String pin, String user) {
+        return accountManager.createCustomer(name, address, pin, user);
     }
 
     @Override

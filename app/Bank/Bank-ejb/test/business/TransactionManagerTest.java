@@ -64,7 +64,7 @@ public class TransactionManagerTest {
     }
 
     private void createAccount() {
-        Customer customer = accountManager.createCustomer("Petra Müller", "Bahnhofstrasse 1, 3000 Bern", "5678");
+        Customer customer = accountManager.createCustomer("Petra Müller", "Bahnhofstrasse 1, 3000 Bern", "5678", "petra");
         Assert.assertNotNull(customer.getId());
 
         account = accountManager.createAccount(customer, "Privatkonto");

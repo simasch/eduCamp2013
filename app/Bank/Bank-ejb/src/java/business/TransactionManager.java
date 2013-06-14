@@ -1,14 +1,14 @@
 package business;
 
 import java.math.BigDecimal;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
 import javax.persistence.EntityManager;
-import javax.persistence.LockModeType;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import model.Account;
+import model.Customer;
 import model.Transaction;
 
 @Stateless
@@ -38,7 +38,9 @@ public class TransactionManager {
     }
 
     public Transaction deposit(Account account, BigDecimal amount) {
-        account = em.find(Account.class, account.getId(), LockModeType.PESSIMISTIC_WRITE);
+        // Pessimistic lock does not work with Derby embedded
+        //account = em.find(Account.class, id, LockModeType.PESSIMISTIC_WRITE);
+        account = em.find(Account.class, account.getId());
 
         account.setBalance(account.getBalance().add(amount));
         account = em.merge(account);
@@ -60,5 +62,11 @@ public class TransactionManager {
         em.persist(t);
         return t;
 
+    }
+
+    public List<Transaction> getTransactions(String user) {
+        TypedQuery t = em.createNamedQuery(Customer.getTransactionsByUser, Transaction.class);
+        t.setParameter("user", user);
+        return t.getResultList();
     }
 }

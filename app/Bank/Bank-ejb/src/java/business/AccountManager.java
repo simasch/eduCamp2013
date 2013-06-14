@@ -15,33 +15,36 @@ import model.Customer;
 @Stateful
 @LocalBean
 public class AccountManager {
-
+    
     @PersistenceContext(unitName = "bank")
     EntityManager em;
-
-    public Customer createCustomer(String name, String address, String pin) {
+    
+    public Customer createCustomer(String name, String address, String pin, String user) {
         Customer customer = new Customer();
         customer.setName(name);
         customer.setAddress(address);
         customer.setPin(pin);
+        customer.setUsername(user);
         em.persist(customer);
         return customer;
     }
-
+    
     public Account createAccount(Customer customer, String description) {
         Account account = new Account();
         account.setDescription(description);
         account.setBalance(BigDecimal.TEN);
         em.persist(account);
-
+        account.setIban("CH"+account.getId());
+        
         customer = em.merge(customer);
         customer.getAccounts().add(account);
         return account;
     }
-
+    
     @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
-    public List<Account> getAccounts() {
-        TypedQuery t = em.createNamedQuery(Account.findAll, Account.class);
+    public List<Account> getAccounts(String user) {
+        TypedQuery t = em.createNamedQuery(Customer.getAccountsByUser, Account.class);
+        t.setParameter("user", user);
         return t.getResultList();
     }
 }

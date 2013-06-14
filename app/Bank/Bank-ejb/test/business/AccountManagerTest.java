@@ -38,28 +38,28 @@ public class AccountManagerTest {
 
     @Test
     public void testCreateCustomer() throws Exception {
-        Customer customer = accountManager.createCustomer("Peter Muster", "Bahnhofstrasse 1, 3000 Bern", "1234");
+        Customer customer = accountManager.createCustomer("Peter Muster", "Bahnhofstrasse 1, 3000 Bern", "1234", "peter");
         Assert.assertNotNull(customer.getId());
     }
 
     @Test
     public void testCreateAccount() throws Exception {
-        Customer customer = accountManager.createCustomer("Petra Müller", "Bahnhofstrasse 1, 3000 Bern", "5678");
+        Customer customer = accountManager.createCustomer("Petra Müller", "Bahnhofstrasse 1, 3000 Bern", "5678", "petra");
         Assert.assertNotNull(customer.getId());
-        
+
         Account account = accountManager.createAccount(customer, "Privatkonto");
         Assert.assertNotNull(account.getId());
     }
-    
+
     @Test
     public void testGetAccounts() throws Exception {
-        Customer customer = accountManager.createCustomer("Petra Müller", "Bahnhofstrasse 1, 3000 Bern", "5678");
+        Customer customer = accountManager.createCustomer("Petra Müller", "Bahnhofstrasse 1, 3000 Bern", "5678", "petra");
         Assert.assertNotNull(customer.getId());
-        
+
         Account account = accountManager.createAccount(customer, "Privatkonto");
         Assert.assertNotNull(account.getId());
-        
-        List<Account> accounts = accountManager.getAccounts();
+
+        List<Account> accounts = accountManager.getAccounts("petra");
         Assert.assertTrue(accounts.size() > 0);
     }
 }
