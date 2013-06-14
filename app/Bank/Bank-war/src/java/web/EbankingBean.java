@@ -27,11 +27,15 @@ public class EbankingBean implements Serializable {
     private AccountManager accountManager;
     @Inject
     private TransactionManager transactionManager;
+    private List<String> ibans = new ArrayList<String>();
 
     @PostConstruct
     public void init() {
         String user = FacesContext.getCurrentInstance().getExternalContext().getRemoteUser();
         accounts = accountManager.getAccounts(user);
+        for (Account a : accounts) {
+            ibans.add(a.getIban());
+        }
     }
 
     public String showTransactions(Account account) {
@@ -84,5 +88,9 @@ public class EbankingBean implements Serializable {
 
     public void setAmount(BigDecimal amount) {
         this.amount = amount;
+    }
+
+    public List<String> getAccountIbans() {
+        return ibans;
     }
 }

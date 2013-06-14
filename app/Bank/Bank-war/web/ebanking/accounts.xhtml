@@ -7,7 +7,7 @@
     </h:head>
     <h:body>
         <h1>Accounts</h1>
-        
+
         <h:form>
             <h:dataTable value="#{ebankingBean.accounts}"  var="account">
                 <h:column>
@@ -18,6 +18,8 @@
                     <h:outputText value="#{account.balance}"/>
                 </h:column>
             </h:dataTable>
+            <br /><br />
+            <h:commandLink value="Transfer Money" action="/ebanking/transfer.xhtml"/>
         </h:form>
     </h:body>
 </html>
