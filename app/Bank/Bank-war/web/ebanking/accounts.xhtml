@@ -11,7 +11,8 @@
         <h:form>
             <h:dataTable value="#{ebankingBean.accounts}"  var="account">
                 <h:column>
-                    <h:commandLink value="#{account.description}"  action="#{ebankingBean.showTransactions(account)}" />
+                    <h:commandLink value="#{account.description}"  
+                                   action="#{ebankingBean.showTransactions(account)}" />
                 </h:column>
                 <h:column>
                     <h:outputText value="#{account.balance}"/>

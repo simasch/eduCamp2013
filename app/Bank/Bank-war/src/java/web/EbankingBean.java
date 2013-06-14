@@ -1,5 +1,7 @@
 package web;
 
+import business.AccountManager;
+import business.TransactionManager;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
@@ -7,6 +9,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 import model.Account;
 import model.Transaction;
 
@@ -20,6 +23,11 @@ public class EbankingBean implements Serializable {
     private String to;
     private BigDecimal amount;
 
+    @Inject
+    private AccountManager accountManager;
+    @Inject
+    private TransactionManager transactionManager;
+    
     @PostConstruct
     public void init() {
         // TODO get the accounts

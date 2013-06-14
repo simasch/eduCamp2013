@@ -9,12 +9,21 @@
         <h1>Transactions</h1>
         
         <h:form>
-            <h:dataTable value="#{ebankingBean.accounts}"  var="account">
+            <h:dataTable value="#{ebankingBean.transactions}"  var="trx">
                 <h:column>
-                    <h:commandLink value="#{account.description}"  action="#{ebankingBean.showTransactions(account)}" />
+                    <h:outputText value="#{trx.valuta}" />
                 </h:column>
                 <h:column>
-                    <h:outputText value="#{account.balance}"/>
+                    <h:outputText value="#{trx.debit}" />
+                </h:column>
+                <h:column>
+                    <h:outputText value="#{trx.credit}" />
+                </h:column>
+                <h:column>
+                    <h:outputText value="#{trx.text}" />
+                </h:column>
+                <h:column>
+                    <h:outputText value="#{trx.amount}" />
                 </h:column>
             </h:dataTable>
         </h:form>
