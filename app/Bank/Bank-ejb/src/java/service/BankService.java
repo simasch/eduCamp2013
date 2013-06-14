@@ -8,7 +8,7 @@ import model.Account;
 import model.Customer;
 
 @Stateless
-@RolesAllowed("COUNTER")
+@RolesAllowed("EMPLOYEE")
 public class BankService implements BankServiceRemote {
 
     @EJB
