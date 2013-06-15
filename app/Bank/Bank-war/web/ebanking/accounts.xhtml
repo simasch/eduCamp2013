@@ -3,24 +3,27 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html">
     <h:head>
+        <link rel="stylesheet" type="text/css" href="/bank/css/bank.css"></link>
         <title>E-Banking - Accounts</title>
     </h:head>
     <h:body>
-        <h1>Accounts</h1>
+        <div id="content">
+            <h1>Accounts</h1>
 
-        <h:form>
-            <h:dataTable value="#{ebankingBean.accounts}"  var="account">
-                <h:column>
-                    <h:commandLink value="#{account.description}"  
-                                   action="#{ebankingBean.showTransactions(account)}" />
-                </h:column>
-                <h:column>
-                    <h:outputText value="#{account.balance}"/>
-                </h:column>
-            </h:dataTable>
-            <br /><br />
-            <h:commandLink value="Transfer Money" action="/ebanking/transfer.xhtml"/>
-        </h:form>
+            <h:form>
+                <h:dataTable value="#{ebankingBean.accounts}"  var="account">
+                    <h:column>
+                        <h:commandLink value="#{account.description}"  
+                                       action="#{ebankingBean.showTransactions(account)}" />
+                    </h:column>
+                    <h:column>
+                        <h:outputText value="#{account.balance}"/>
+                    </h:column>
+                </h:dataTable>
+                <br /><br />
+                <h:commandLink value="Transfer Money" action="/ebanking/transfer.xhtml"/>
+            </h:form>
+        </div>
     </h:body>
 </html>
 

@@ -9,13 +9,13 @@ import javax.jms.Message;
 import javax.jms.MessageListener;
 import javax.jms.TextMessage;
 
-@MessageDriven(mappedName = "jms/q1", activationConfig = {
+@MessageDriven(mappedName = "jms/clearing", activationConfig = {
     @ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Auto-acknowledge"),
     @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Queue")
 })
-public class Q1Mdb implements MessageListener {
+public class ClearingMDB implements MessageListener {
 
-    private final static Logger LOGGER = Logger.getLogger(Q1Mdb.class.getName());
+    private final static Logger LOGGER = Logger.getLogger(ClearingMDB.class.getName());
 
     @Override
     public void onMessage(Message message) {
@@ -23,7 +23,7 @@ public class Q1Mdb implements MessageListener {
             TextMessage tm = (TextMessage) message;
             LOGGER.info(tm.getText());
         } catch (JMSException ex) {
-            Logger.getLogger(Q1Mdb.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ClearingMDB.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

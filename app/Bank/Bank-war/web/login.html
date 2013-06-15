@@ -1,30 +1,33 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" type="text/css" href="/bank/css/bank.css">
         <meta charset="utf-8">
         <title>Login</title>
     </head>
     <body>
-        <h2>Login</h2>
-        <form action="j_security_check" method="POST">
+        <div id="content">
+            <h2>Login</h2>
+            <form action="j_security_check" method="POST">
 
-            <table class="input">
-                <tr>
-                    <td>Email</td>
-                    <td><input id="username" type="text" name="j_username"></td>
-                </tr>
-                <tr>
-                    <td>Password</td>
-                    <td><input type="password" name="j_password"></td>
-                </tr>
-            </table>
+                <table class="input">
+                    <tr>
+                        <td>Email</td>
+                        <td><input id="username" type="text" name="j_username"></td>
+                    </tr>
+                    <tr>
+                        <td>Password</td>
+                        <td><input type="password" name="j_password"></td>
+                    </tr>
+                </table>
 
-            <p><input type="submit" value="Submit">&nbsp;<input type="reset" value="Reset"></p>
+                <p><input type="submit" value="Submit">&nbsp;<input type="reset" value="Reset"></p>
 
-            <script>
-                document.getElementById("username").focus();
-            </script>
+                <script>
+                    document.getElementById("username").focus();
+                </script>
 
-        </form>
+            </form>
+        </div>
     </body>
 </html>

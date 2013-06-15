@@ -1,0 +1,10 @@
+div#content {
+    padding-top: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 30px;
+    margin-left: auto; 
+    margin-right: auto; 
+    margin-top: 30px;
+    width: 800px;
+}

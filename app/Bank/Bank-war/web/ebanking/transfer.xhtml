@@ -4,27 +4,30 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core">
     <h:head>
+        <link rel="stylesheet" type="text/css" href="/bank/css/bank.css"></link>
         <title>E-Banking - Transfer Money</title>
     </h:head>
     <h:body>
-        <h1>Transfer Money</h1>
+        <div id="content">
+            <h1>Transfer Money</h1>
 
-        <h:form>
-            <h:panelGrid columns="2">
-                <h:outputText value="From"/>
-                <h:selectOneMenu value="#{ebankingBean.to}">
-                    <f:selectItems value="#{ebankingBean.accountIbans}" />
-                </h:selectOneMenu>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="From"/>
+                    <h:selectOneMenu value="#{ebankingBean.to}">
+                        <f:selectItems value="#{ebankingBean.accountIbans}" />
+                    </h:selectOneMenu>
 
-                <h:outputText value="To"/>
-                <h:inputText value="#{ebankingBean.to}" required="true"/>
+                    <h:outputText value="To"/>
+                    <h:inputText value="#{ebankingBean.to}" required="true"/>
 
-                <h:outputText value="Amount"/>
-                <h:inputText value="#{ebankingBean.amount}" required="true"/>
-            </h:panelGrid>
+                    <h:outputText value="Amount"/>
+                    <h:inputText value="#{ebankingBean.amount}" required="true"/>
+                </h:panelGrid>
 
-            <h:commandButton value="Send" action="#{ebankingBean.send()}" />
-        </h:form>
+                <h:commandButton value="Send" action="#{ebankingBean.send()}" />
+            </h:form>
+        </div>
     </h:body>
 </html>
 

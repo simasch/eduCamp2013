@@ -3,30 +3,33 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html">
     <h:head>
+        <link rel="stylesheet" type="text/css" href="/bank/css/bank.css"></link>
         <title>E-Banking - Transactions</title>
     </h:head>
     <h:body>
-        <h1>Transactions</h1>
+        <div id="content">
+            <h1>Transactions</h1>
 
-        <h:form>
-            <h:dataTable value="#{ebankingBean.transactions}"  var="trx">
-                <h:column>
-                    <h:outputText value="#{trx.valuta}" />
-                </h:column>
-                <h:column>
-                    <h:outputText value="#{trx.debit}" />
-                </h:column>
-                <h:column>
-                    <h:outputText value="#{trx.credit}" />
-                </h:column>
-                <h:column>
-                    <h:outputText value="#{trx.text}" />
-                </h:column>
-                <h:column>
-                    <h:outputText value="#{trx.amount}" />
-                </h:column>
-            </h:dataTable>
-        </h:form>
+            <h:form>
+                <h:dataTable value="#{ebankingBean.transactions}"  var="trx">
+                    <h:column>
+                        <h:outputText value="#{trx.valuta}" />
+                    </h:column>
+                    <h:column>
+                        <h:outputText value="#{trx.debit}" />
+                    </h:column>
+                    <h:column>
+                        <h:outputText value="#{trx.credit}" />
+                    </h:column>
+                    <h:column>
+                        <h:outputText value="#{trx.text}" />
+                    </h:column>
+                    <h:column>
+                        <h:outputText value="#{trx.amount}" />
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+        </div>
     </h:body>
 </html>
 
