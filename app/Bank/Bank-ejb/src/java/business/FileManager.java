@@ -1,21 +1,21 @@
 package business;
 
-import file.File;
-import file.FileDataSource;
 import javax.annotation.Resource;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
+import org.connectorz.files.Bucket;
+import org.connectorz.files.BucketStore;
 
 @Stateless
 @LocalBean
 public class FileManager {
 
-    @Resource(mappedName = "jca/file")
-    private FileDataSource fds;
+    @Resource(mappedName = "jca/BucketStore")
+    private BucketStore bucketStore;
 
     public void writeToFile() {
-        File file = fds.getConnection();
-        file.write("Content");
-        file.close();
+        Bucket bucket = bucketStore.getBucket();
+        bucket.write("abc.txt", "content".getBytes());
+        bucket.close();
     }
 }

@@ -17,9 +17,6 @@
                 <library dirs="200">
                     <file>${reference.Bank-model.jar}</file>
                 </library>
-                <library dirs="100">
-                    <file>${reference.Bank-connector.dist}</file>
-                </library>
             </web-module-libraries>
             <web-module-additional-libraries/>
             <source-roots>
@@ -30,14 +27,6 @@
             </test-roots>
         </data>
         <references xmlns="http://www.netbeans.org/ns/ant-project-references/1">
-            <reference>
-                <foreign-project>Bank-connector</foreign-project>
-                <artifact-type>jar</artifact-type>
-                <script>build.xml</script>
-                <target>dist</target>
-                <clean-target>clean</clean-target>
-                <id>dist</id>
-            </reference>
             <reference>
                 <foreign-project>Bank-ejb</foreign-project>
                 <artifact-type>jar</artifact-type>
