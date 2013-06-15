@@ -17,6 +17,10 @@
                 <library dirs="200">
                     <file>${reference.Bank-model.jar}</file>
                 </library>
+                <library dirs="100">
+                    <file>${reference.GenericJCA.dist}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
             </web-module-libraries>
             <web-module-additional-libraries/>
             <source-roots>
@@ -42,6 +46,14 @@
                 <target>jar</target>
                 <clean-target>clean</clean-target>
                 <id>jar</id>
+            </reference>
+            <reference>
+                <foreign-project>GenericJCA</foreign-project>
+                <artifact-type>jar</artifact-type>
+                <script>build.xml</script>
+                <target>dist</target>
+                <clean-target>clean</clean-target>
+                <id>dist</id>
             </reference>
         </references>
     </configuration>
