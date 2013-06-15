@@ -1,12 +1,9 @@
 package web;
 
-import com.abien.patterns.integration.genericjca.Connection;
-import com.abien.patterns.integration.genericjca.DataSource;
+import file.File;
+import file.FileDataSource;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.annotation.Resource;
-import javax.resource.ResourceException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,13 +14,13 @@ import javax.servlet.http.HttpServletResponse;
 public class FileServlet extends HttpServlet {
 
     @Resource(mappedName = "jca/file")
-    private DataSource fds;
+    private FileDataSource fds;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Connection connection = fds.getConnection();
-        connection.write("Hello World");
-        connection.close();
+        File file = fds.getConnection();
+        file.write("Hello World");
+        file.close();
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

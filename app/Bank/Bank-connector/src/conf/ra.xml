@@ -4,18 +4,18 @@
            xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
            http://java.sun.com/xml/ns/j2ee/connector_1_5.xsd"
            version="1.5">
-    <display-name>Generic JCA</display-name>
-    <vendor-name>adam-bien.com</vendor-name>
-    <eis-type>Generic JCA</eis-type>
+    <display-name>File Adapter</display-name>
+    <vendor-name></vendor-name>
+    <eis-type>File</eis-type>
     <resourceadapter-version>1.0</resourceadapter-version>
     <resourceadapter>
         <outbound-resourceadapter>
             <connection-definition>
-                <managedconnectionfactory-class>com.abien.patterns.integration.genericjca.spi.GenericManagedConnectionFactory</managedconnectionfactory-class>
-                <connectionfactory-interface>com.abien.patterns.integration.genericjca.DataSource</connectionfactory-interface>
-                <connectionfactory-impl-class>com.abien.patterns.integration.genericjca.spi.FileDataSource</connectionfactory-impl-class>
-                <connection-interface>com.abien.patterns.integration.genericjca.Connection</connection-interface>
-                <connection-impl-class>com.abien.patterns.integration.genericjca.spi.FileConnection</connection-impl-class>
+                <managedconnectionfactory-class>file.internal.FileManagedConnectionFactory</managedconnectionfactory-class>
+                <connectionfactory-interface>file.FileDataSource</connectionfactory-interface>
+                <connectionfactory-impl-class>file.internal.FileDataSourceImpl</connectionfactory-impl-class>
+                <connection-interface>file.File</connection-interface>
+                <connection-impl-class>file.FileConnection</connection-impl-class>
             </connection-definition>
             <transaction-support>LocalTransaction</transaction-support>
             <authentication-mechanism>
