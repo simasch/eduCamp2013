@@ -782,11 +782,15 @@ exists or setup the property manually. For example like this:
                 COMPILATION SECTION
             -->
     <target depends="init" if="no.dist.ear.dir" name="-deps-module-jar" unless="no.deps">
+        <ant antfile="${project.Bank-connector}/build.xml" inheritall="false" target="dist"/>
         <ant antfile="${project.Bank-model}/build.xml" inheritall="false" target="jar">
             <property name="deploy.on.save" value="false"/>
         </ant>
     </target>
     <target depends="init" if="dist.ear.dir" name="-deps-ear-jar" unless="no.deps">
+        <ant antfile="${project.Bank-connector}/build.xml" inheritall="false" target="dist-ear">
+            <property location="${build.dir}" name="dist.ear.dir"/>
+        </ant>
         <ant antfile="${project.Bank-model}/build.xml" inheritall="false" target="jar">
             <property name="deploy.on.save" value="false"/>
         </ant>
@@ -803,16 +807,20 @@ exists or setup the property manually. For example like this:
     <target depends="compile,-library-inclusion-in-archive-weblogic,-library-inclusion-in-archive-by-user" name="library-inclusion-in-archive"/>
     <target if="is.jars.in.ejbjar" name="-library-inclusion-in-archive-by-user">
         <copyfiles files="${reference.Bank-model.jar}" todir="${build.classes.dir}"/>
+        <copyfiles files="${reference.Bank-connector.dist}" todir="${build.classes.dir}"/>
     </target>
     <target if="is.server.weblogic" name="-library-inclusion-in-archive-weblogic">
         <basename file="${reference.Bank-model.jar}" property="manifest.reference.Bank-model.jar"/>
+        <basename file="${reference.Bank-connector.dist}" property="manifest.reference.Bank-connector.dist"/>
         <manifest file="${build.ear.classes.dir}/META-INF/MANIFEST.MF" mode="update">
-            <attribute name="Extension-List" value="jar-1 "/>
+            <attribute name="Extension-List" value="jar-1 jar-2 "/>
             <attribute name="jar-1-Extension-Name" value="${manifest.reference.Bank-model.jar}"/>
+            <attribute name="jar-2-Extension-Name" value="${manifest.reference.Bank-connector.dist}"/>
         </manifest>
     </target>
     <target depends="compile" name="library-inclusion-in-manifest">
         <copyfiles files="${reference.Bank-model.jar}" todir="${dist.ear.dir}/lib"/>
+        <copyfiles files="${reference.Bank-connector.dist}" todir="${dist.ear.dir}"/>
         <manifest file="${build.ear.classes.dir}/META-INF/MANIFEST.MF" mode="update"/>
     </target>
     <target name="-copy-meta-inf">
@@ -1196,6 +1204,7 @@ exists or setup the property manually. For example like this:
                 CLEANUP SECTION
             -->
     <target depends="init" name="deps-clean" unless="no.deps">
+        <ant antfile="${project.Bank-connector}/build.xml" inheritall="false" target="clean"/>
         <ant antfile="${project.Bank-model}/build.xml" inheritall="false" target="clean"/>
     </target>
     <target depends="init" name="-do-clean">

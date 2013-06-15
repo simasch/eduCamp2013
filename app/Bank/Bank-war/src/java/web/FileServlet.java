@@ -1,9 +1,8 @@
 package web;
 
-import file.File;
-import file.FileDataSource;
+import business.FileManager;
 import java.io.IOException;
-import javax.annotation.Resource;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,14 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "FileServlet", urlPatterns = {"/file"})
 public class FileServlet extends HttpServlet {
 
-    @Resource(mappedName = "jca/file")
-    private FileDataSource fds;
-
+    @EJB
+    private FileManager fileManager;
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        File file = fds.getConnection();
-        file.write("Hello World");
-        file.close();
+        fileManager.writeToFile();
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
