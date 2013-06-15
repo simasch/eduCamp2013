@@ -55,7 +55,6 @@ public class FileConnection implements File, LocalTransaction {
             this.buffer = null;
         } catch (IOException ex) {
             Logger.getLogger(FileConnection.class.getName()).log(Level.SEVERE, null, ex);
-            throw new IllegalStateException("Cannot close stream: " + ex, ex);
         }
     }
 
